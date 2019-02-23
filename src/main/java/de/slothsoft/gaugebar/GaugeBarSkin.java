@@ -23,107 +23,108 @@ import javafx.scene.shape.PathElement;
 
 public class GaugeBarSkin implements Skin<GaugeBar> {
 
-    private static final int GAUGE_BORDER = 2;
-    private static final int GAUGE_MAX_SIZE = 10;
-    private static final int TICK_DEGREE = 10;
+	private static final int GAUGE_BORDER = 2;
+	private static final int GAUGE_MAX_SIZE = 10;
+	private static final int TICK_DEGREE = 10;
 
-    private final GaugeBar gaugeBar;
-    private Group rootNode;
-    private final int size = 50;
+	private final GaugeBar gaugeBar;
+	private Group rootNode;
+	private final int size = 50;
 
-    public GaugeBarSkin(GaugeBar gaugeBar) {
-	this.gaugeBar = gaugeBar;
-	hookEventHandler();
-    }
-
-    private void hookEventHandler() {
-	this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_VALUE, new EventHandler<Event>() {
-
-	    @Override
-	    public void handle(Event event) {
-		redraw();
-	    }
-	});
-	this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_MAX_VALUE, new EventHandler<Event>() {
-
-	    @Override
-	    public void handle(Event event) {
-		redraw();
-	    }
-	});
-    }
-
-    @Override
-    public GaugeBar getSkinnable() {
-	return this.gaugeBar;
-    }
-
-    @Override
-    public Node getNode() {
-	if (this.rootNode == null) {
-	    this.rootNode = new Group();
-	    redraw();
+	public GaugeBarSkin(GaugeBar gaugeBar) {
+		this.gaugeBar = gaugeBar;
+		hookEventHandler();
 	}
-	return this.rootNode;
-    }
 
-    protected void redraw() {
-	List<Node> rootChildren = new ArrayList<Node>();
-	rootChildren.add(createBackground());
-	rootChildren.add(createGauge());
-	rootChildren.add(createTicks());
-	rootChildren.add(createGaugeBlend());
-	rootChildren.add(createBorder());
-	this.rootNode.getChildren().setAll(rootChildren);
-    }
+	private void hookEventHandler() {
+		this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_VALUE, new EventHandler<>() {
 
-    @Override
-    public void dispose() {
-	// nothing to do
-    }
+			@Override
+			public void handle(Event event) {
+				redraw();
+			}
+		});
+		this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_MAX_VALUE, new EventHandler<>() {
 
-    private Node createBackground() {
-	return new Circle(this.size, this.size, this.size + 1);
-    }
-
-    private Node createGauge() {
-	Stop[] stops = new Stop[] { new Stop(0, Color.LIGHTGREEN), new Stop(1, Color.DARKGREEN) };
-	Circle circle = new Circle(this.size, this.size, this.size - 2 * GAUGE_BORDER);
-	circle.setFill(new LinearGradient(1, 0, 0.5, 1, true, CycleMethod.NO_CYCLE, stops));
-	circle.getStyleClass().add("gauge");
-	return circle;
-    }
-
-    private Node createTicks() {
-	Path tickMarks = new Path();
-	ObservableList<PathElement> pathChildren = tickMarks.getElements();
-	for (int i = 0; i < 360; i += TICK_DEGREE) {
-	    pathChildren.add(new MoveTo(this.size, this.size));
-	    pathChildren.add(new LineTo(this.size * Math.cos(Math.toRadians(i)) + this.size, this.size
-		    * Math.sin(Math.toRadians(i)) + this.size));
+			@Override
+			public void handle(Event event) {
+				redraw();
+			}
+		});
 	}
-	return tickMarks;
-    }
 
-    private Node createGaugeBlend() {
-	Group group = new Group();
+	@Override
+	public GaugeBar getSkinnable() {
+		return this.gaugeBar;
+	}
 
-	float arcBlendDegrees = 130 + (1 - (float) this.gaugeBar.value / this.gaugeBar.maxValue) * 230;
-	Arc arcBlend = new Arc(this.size, this.size, this.size, this.size, -90, arcBlendDegrees);
-	arcBlend.setType(ArcType.ROUND);
-	arcBlend.setFill(Color.BLACK);
+	@Override
+	public Node getNode() {
+		if (this.rootNode == null) {
+			this.rootNode = new Group();
+			redraw();
+		}
+		return this.rootNode;
+	}
 
-	Circle circleBlend = new Circle(this.size, this.size + 3 * GAUGE_MAX_SIZE / 2, this.size - 2 * GAUGE_MAX_SIZE);
-	circleBlend.setFill(Color.BLACK);
+	protected void redraw() {
+		final List<Node> rootChildren = new ArrayList<>();
+		rootChildren.add(createBackground());
+		rootChildren.add(createGauge());
+		rootChildren.add(createTicks());
+		rootChildren.add(createGaugeBlend());
+		rootChildren.add(createBorder());
+		this.rootNode.getChildren().setAll(rootChildren);
+	}
 
-	group.getChildren().setAll(arcBlend, circleBlend);
-	return group;
-    }
+	@Override
+	public void dispose() {
+		// nothing to do
+	}
 
-    private Node createBorder() {
-	Circle circle = new Circle(this.size, this.size, this.size);
-	circle.setFill(null);
-	circle.setStroke(Color.WHITE);
-	return circle;
-    }
+	private Node createBackground() {
+		return new Circle(this.size, this.size, this.size + 1);
+	}
+
+	private Node createGauge() {
+		final Stop[] stops = new Stop[]{new Stop(0, Color.LIGHTGREEN), new Stop(1, Color.DARKGREEN)};
+		final Circle circle = new Circle(this.size, this.size, this.size - 2 * GAUGE_BORDER);
+		circle.setFill(new LinearGradient(1, 0, 0.5, 1, true, CycleMethod.NO_CYCLE, stops));
+		circle.getStyleClass().add("gauge");
+		return circle;
+	}
+
+	private Node createTicks() {
+		final Path tickMarks = new Path();
+		final ObservableList<PathElement> pathChildren = tickMarks.getElements();
+		for (int i = 0; i < 360; i += TICK_DEGREE) {
+			pathChildren.add(new MoveTo(this.size, this.size));
+			pathChildren.add(new LineTo(this.size * Math.cos(Math.toRadians(i)) + this.size,
+					this.size * Math.sin(Math.toRadians(i)) + this.size));
+		}
+		return tickMarks;
+	}
+
+	private Node createGaugeBlend() {
+		final Group group = new Group();
+
+		final float arcBlendDegrees = 130 + (1 - (float) this.gaugeBar.value / this.gaugeBar.maxValue) * 230;
+		final Arc arcBlend = new Arc(this.size, this.size, this.size, this.size, -90, arcBlendDegrees);
+		arcBlend.setType(ArcType.ROUND);
+		arcBlend.setFill(Color.BLACK);
+
+		final Circle circleBlend = new Circle(this.size, this.size + 3 * GAUGE_MAX_SIZE / 2,
+				this.size - 2 * GAUGE_MAX_SIZE);
+		circleBlend.setFill(Color.BLACK);
+
+		group.getChildren().setAll(arcBlend, circleBlend);
+		return group;
+	}
+
+	private Node createBorder() {
+		final Circle circle = new Circle(this.size, this.size, this.size);
+		circle.setFill(null);
+		circle.setStroke(Color.WHITE);
+		return circle;
+	}
 }
