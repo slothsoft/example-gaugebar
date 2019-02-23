@@ -6,8 +6,8 @@ import javafx.scene.control.Control;
 
 public class GaugeBar extends Control {
 
-    public static final EventType<Event> EVENT_TYPE_CHANGE_VALUE = new EventType<Event>();
-    public static final EventType<Event> EVENT_TYPE_CHANGE_MAX_VALUE = new EventType<Event>();
+    public static final EventType<Event> EVENT_TYPE_CHANGE_VALUE = new EventType<Event>(EventType.ROOT, "de.slothsoft.gaugebar.GaugeBar.EVENT_TYPE_CHANGE_VALUE");
+    public static final EventType<Event> EVENT_TYPE_CHANGE_MAX_VALUE = new EventType<Event>(EventType.ROOT, "de.slothsoft.gaugebar.GaugeBar.EVENT_TYPE_CHANGE_MAX_VALUE");
 
     protected int maxValue = 100;
     protected int value = this.maxValue;

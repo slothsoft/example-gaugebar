@@ -1,5 +1,6 @@
 package de.slothsoft.gaugebar;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -7,9 +8,14 @@ public class GaugeBarTest {
 
     @Rule
     public JavaFXThreadingRule javafxRule = new JavaFXThreadingRule();
+    private GaugeBar classUnderTest ;
 
-    private GaugeBar classUnderTest = new GaugeBar();
-
+    @Before
+    public void setUp() {
+	classUnderTest = new GaugeBar();
+    }
+    
+    
     @Test
     public void testValue() {
 	this.classUnderTest.setValue(50);
