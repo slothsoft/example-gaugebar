@@ -1,10 +1,36 @@
-Gaugebar Example
-================
+# Gaugebar Example
 
-I'm trying to always learn new stuff by writing about it over at http://slothsoft.de/
+- **Author:** [Stef Schulz](mailto:s.schulz@slothsoft.de)
+- **Repository:** <https://github.com/slothsoft/example-gaugebar>
+- **Open Issues:** <https://github.com/slothsoft/example-gaugebar/issues>
+- **Wiki:** none
 
-Since ZIP files are a bit unflexible and somewhat annoying to handle I want to put the source code for my tutorials
-in these GIT repositories.
+This example shows percent value inside a gaugebar like this:
 
-This example shows how to create a custom control with JavaFX, using a gauge bar as example. A step by step description can be found here: http://slothsoft.de/content/creating-custom-control-javafx-gauge-bar
+![Screenshot](https://raw.githubusercontent.com/slothsoft/example-gaugebar/master/readme/100percent.png)
 
+
+## Getting Started
+
+### Prerequisites
+
+You need at least **Java 11** or above to run this library. 
+
+### Using the Example
+
+Checkout this project and run the [MainApplication](https://github.com/slothsoft/example-gaugebar/blob/master/src/main/java/de/slothsoft/gaugebar/MainApplication.java). The other two classes (`GaugeBar` and `GaugeBarSkin`) are the ones you want to copy if you like what you see.
+
+
+##  Versions
+
+
+| Version       |
+| ------------- |
+| [Java 11](https://github.com/slothsoft/example-gaugebar) |
+| [Java 7](https://github.com/slothsoft/example-gaugebar/tree/java7) |
+
+
+
+## License
+
+This project is licensed under the MIT License - see the [MIT license](https://opensource.org/licenses/MIT) for details.

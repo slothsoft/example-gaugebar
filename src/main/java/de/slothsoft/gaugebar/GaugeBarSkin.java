@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.Skin;
@@ -37,20 +35,8 @@ public class GaugeBarSkin implements Skin<GaugeBar> {
 	}
 
 	private void hookEventHandler() {
-		this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_VALUE, new EventHandler<>() {
-
-			@Override
-			public void handle(Event event) {
-				redraw();
-			}
-		});
-		this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_MAX_VALUE, new EventHandler<>() {
-
-			@Override
-			public void handle(Event event) {
-				redraw();
-			}
-		});
+		this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_VALUE, event -> redraw());
+		this.gaugeBar.addEventHandler(GaugeBar.EVENT_TYPE_CHANGE_MAX_VALUE, event -> redraw());
 	}
 
 	@Override
