@@ -11,8 +11,8 @@ public class GaugeBar extends Control {
 	public static final EventType<Event> EVENT_TYPE_CHANGE_MAX_VALUE = new EventType<>(EventType.ROOT,
 			"de.slothsoft.gaugebar.GaugeBar.EVENT_TYPE_CHANGE_MAX_VALUE");
 
-	protected int maxValue = 100;
-	protected int value = this.maxValue;
+	int maxValue = 100;
+	int value = this.maxValue;
 
 	public GaugeBar() {
 		setSkin(new GaugeBarSkin(this));

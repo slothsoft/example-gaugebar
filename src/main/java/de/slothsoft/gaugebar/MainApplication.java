@@ -53,7 +53,7 @@ public class MainApplication extends Application {
 		});
 
 		final Scene scene = new Scene(new Group(valueText, button, responseLabel, gaugeBar), 300, 200);
-		// scene.getStylesheets().add("style.css");
+//		scene.getStylesheets().add("style.css");
 
 		primaryStage.setTitle("Gauge Bar Demo");
 		primaryStage.setScene(scene);
