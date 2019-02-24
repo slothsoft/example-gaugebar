@@ -8,6 +8,13 @@ This example shows percent value inside a gaugebar like this:
 
 ![Screenshot](https://raw.githubusercontent.com/slothsoft/example-gaugebar/master/readme/100percent.png)
 
+**Content of this file:**
+
+- [Getting Started](#getting-started)
+- [Versions](#versions)
+- [Tutorial](#tutorial)
+- [License](#license)
+
 
 ## Getting Started
 
@@ -30,8 +37,7 @@ Checkout this project and run the [MainApplication](https://github.com/slothsoft
 
 ##  Tutorial
 
-<details><summary>Yes, you can just copy the classes. But if you want to know why I implemented them the way I did, read the following paragraphs.</summary>
-<p>
+Yes, you can just copy the classes. But if you want to know why I implemented them the way I did, read the following paragraphs.
 
 Because today I want to show how to create custom controls with JavaFX, while honoring separation of layout and logic. Additionally I'll show how to use programmatic skinning and a CSS file.
 
@@ -195,8 +201,6 @@ When we start our application now, our green gauge will be red. You can test thi
 
 In the end we should have a control with nicely tested logic and one skin that could be customized via CSS. We know how to go about painting complex figures and we used the listener pattern. If there are still questions, I'd love to hear them. And if you want to see the entire project, that's why it's on GitHub in the first place.
 
-</p>
-</details>
 
 ## License
 
