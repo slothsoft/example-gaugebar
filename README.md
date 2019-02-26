@@ -20,7 +20,7 @@ This example shows percent value inside a gaugebar like this:
 
 ### Prerequisites
 
-You need at least **Java 11** or above to run the code. But a **Java 7** version is still in the tags, if you need it. 
+You need at least **Java 11** or above to run the code. But a **Java 7** version is still in the branches, if you need it. 
 
 ### Using the Example
 
