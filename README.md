@@ -1,5 +1,7 @@
 # Gaugebar Example
 
+[![Build Status](https://travis-ci.org/slothsoft/example-gaugebar.svg?branch=master)](https://travis-ci.org/slothsoft/example-gaugebar)
+
 - **Author:** [Stef Schulz](mailto:s.schulz@slothsoft.de)
 - **Repository:** <https://github.com/slothsoft/example-gaugebar>
 - **Open Issues:** <https://github.com/slothsoft/example-gaugebar/issues>
