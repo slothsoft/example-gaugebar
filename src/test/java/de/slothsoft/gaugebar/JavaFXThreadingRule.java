@@ -32,6 +32,7 @@ public class JavaFXThreadingRule implements TestRule {
 	 * Flag for setting up the JavaFX, we only need to do this once for all tests.
 	 */
 	private static boolean jfxIsSetup;
+	private static boolean jfxIsForbidden;
 
 	@Override
 	public Statement apply(Statement statement, Description description) {
@@ -53,6 +54,8 @@ public class JavaFXThreadingRule implements TestRule {
 				setupJavaFX();
 				jfxIsSetup = true;
 			}
+			if (jfxIsForbidden) return;
+
 			final CountDownLatch countDownLatch = new CountDownLatch(1);
 			Platform.runLater(new Runnable() {
 				@Override
@@ -66,6 +69,7 @@ public class JavaFXThreadingRule implements TestRule {
 				}
 			});
 			countDownLatch.await();
+
 			// if an exception was thrown by the statement during evaluation,
 			// then re-throw it to fail the test
 			if (this.rethrownException != null) throw this.rethrownException;
@@ -77,8 +81,14 @@ public class JavaFXThreadingRule implements TestRule {
 			SwingUtilities.invokeLater(new Runnable() {
 				@Override
 				public void run() {
-					// initializes JavaFX environment
-					new JFXPanel();
+					try {
+						// initializes JavaFX environment
+						new JFXPanel();
+					} catch (final UnsupportedOperationException e) {
+						// we are on a headless system (-> travis), so we are not allowed
+						// to execute JavaFX
+						jfxIsForbidden = true;
+					}
 					latch.countDown();
 				}
 			});
