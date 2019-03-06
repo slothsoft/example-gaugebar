@@ -196,7 +196,7 @@ Scene scene = new Scene(group, 240, 120);
 scene.getStylesheets().add("style.css"); // etc
 ```
 
-When we start our application now, our green gauge will be red. You can test this out by uncommenting the line in `[MainApplication](https://github.com/slothsoft/example-gaugebar/blob/master/src/main/java/de/slothsoft/gaugebar/MainApplication.java)` (it's line 56 right now, but that might change).
+When we start our application now, our green gauge will be red. You can test this out by uncommenting the line in [MainApplication](https://github.com/slothsoft/example-gaugebar/blob/master/src/main/java/de/slothsoft/gaugebar/MainApplication.java) (it's line 56 right now, but that might change).
 
 
 ### Summary
